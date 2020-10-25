@@ -28,9 +28,6 @@ func Routes() {
 
     mux.HandleFunc("/", user.UserIndex)
 
-    // running message
-    fmt.Println("Server running")
-
     var confPort int = conf.Server.Port
 
     // init
@@ -39,7 +36,8 @@ func Routes() {
         port = confPort
     }
 
-    fmt.Println(port)
+    // running message
+    fmt.Println("Server running on port:", port, "loging:", conf.Log.Verbose)
 
     server := new(http.Server) // create server instance
     server.Addr = fmt.Sprintf(":%d", port) // server port
