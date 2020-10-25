@@ -5,6 +5,7 @@ import (
     "log"
     "net/http"
     "gotodo/app/config"
+    "gotodo/app/controllers/user"
 )
 
 type CustomMux struct {
@@ -25,9 +26,7 @@ func (c CustomMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func Routes() {
     mux := new(CustomMux)
 
-    mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        fmt.Fprintln(w, "hello world")
-    })
+    mux.HandleFunc("/", user.UserIndex)
 
     // running message
     fmt.Println("Server running")
