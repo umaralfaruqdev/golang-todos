@@ -26,6 +26,12 @@ func (c CustomMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func Routes() {
     mux := new(CustomMux)
 
+    // handle static files
+    mux.Handle("/static/",
+        http.StripPrefix("/static/",
+            http.FileServer(http.Dir("assets"))))
+
+    /* handling routes */
     mux.HandleFunc("/", user.UserIndex)
 
     var confPort int = conf.Server.Port
