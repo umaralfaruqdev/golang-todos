@@ -54,8 +54,10 @@
 
                         <!-- body -->
                         <tbody>
+                            <!-- Looping -->
+                            {{range $index, $item := .users}}
                             <tr>
-                                <td>1.</td>
+                                <td>{{$item.UserIndexing $index}}</td>
                                 <td>
                                     <a href="#" class="text-success">Steve</a>
                                 </td>
@@ -82,6 +84,8 @@
                                     ></a>
                                 </td>
                             </tr>
+                            {{end}}
+                            <!-- /looping -->
                         </tbody>
                     </table>
                 </div>
