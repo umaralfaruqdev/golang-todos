@@ -3,6 +3,6 @@
         "port": 9000
     },
     "log": {
-        "verbose": true
+        "verbose": false
     }
 }
