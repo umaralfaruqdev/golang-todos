@@ -54,6 +54,14 @@
 
                         <!-- body -->
                         <tbody>
+                            {{$numRows := len .users}}
+
+                            {{if eq $numRows 0}}
+                            <tr>
+                                <td colspan="7" class="alert alert-warning">No data!</td>
+                            </tr>
+                            {{else}}
+
                             <!-- Looping -->
                             {{range $index, $item := .users}}
                             <tr>
@@ -84,6 +92,7 @@
                                     ></a>
                                 </td>
                             </tr>
+                            {{end}}
                             {{end}}
                             <!-- /looping -->
                         </tbody>
