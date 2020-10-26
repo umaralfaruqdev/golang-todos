@@ -33,6 +33,7 @@ func Routes() {
 
     /* handling routes */
     mux.HandleFunc("/", user.UserIndex)
+    mux.HandleFunc("/user/store", user.UserStore)
 
     var confPort int = conf.Server.Port
 
