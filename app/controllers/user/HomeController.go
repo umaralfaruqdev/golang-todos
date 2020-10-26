@@ -84,7 +84,7 @@ var funcMap = template.FuncMap{
 func UserIndex(w http.ResponseWriter, r *http.Request) {
 
     rows, err := user.UserGetAll() // get all users
-    if !Msg(err) { return }
+    if err != nil { return }
 
     var result []UserStruct // init struct array
 
