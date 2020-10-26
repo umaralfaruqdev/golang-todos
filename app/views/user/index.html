@@ -65,14 +65,16 @@
                             <!-- Looping -->
                             {{range $index, $item := .users}}
                             <tr>
-                                <td>{{$item.UserIndexing $index}}</td>
+                                <td>{{$item.UserIndexing $index}}.</td>
                                 <td>
-                                    <a href="#" class="text-success">Steve</a>
+                                    <a href="#" class="text-success">{{$item.Fname}}</a>
                                 </td>
-                                <td>Olson</td>
-                                <td class="nowrap">02 sep, 1999</td>
-                                <td>No</td>
-                                <td>21</td>
+                                <td>{{$item.Lname}}</td>
+                                <td class="nowrap">{{parseDate $item.Born}}</td>
+                                <td>
+                                    {{if $item.IsMarried}} Yes {{else}} No {{end}}
+                                </td>
+                                <td>{{getYearOld $item.Born}}</td>
                                 <td class="nowrap">
                                     <a
                                         href="#"
