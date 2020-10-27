@@ -6,6 +6,7 @@ import (
 	userModel "gotodo/app/models/user"
 	. "gotodo/system/error"
 	"encoding/json"
+	"reflect"
 )
 
 func init() {
@@ -53,9 +54,12 @@ func UserStore(w http.ResponseWriter, r *http.Request) {
 
 	// insert to database
 	err = userModel.UserStore(fname, lname, born, isMaried)
+	var jsonStringErr = fmt.Sprintf(`{"status": %d, "message": "%v"}`, 403, err)
+	var jsonStringErrByte = []byte(jsonStringErr)
 
 	if !Msg(err) {
-		http.Error(w, err.Error(), 403)
+		w.Write(jsonStringErrByte)
+		// http.Error(w, err.Error(), 403)
 		return
 	}
 
