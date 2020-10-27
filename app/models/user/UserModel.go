@@ -1,6 +1,7 @@
 package user
 
 import (
+	// "fmt"
     "database/sql"
     . "gotodo/app/config"
     . "gotodo/system/error"
@@ -14,5 +15,30 @@ func UserGetAll() (*sql.Rows, error) {
     if !Msg(err) { return nil, err }
 
     return rows, nil
+}
+
+/**
+ * insert user data to database
+ * @return mix
+ */
+
+func UserStore(fname string, lname string) error {
+	db, err := Conn()
+	if err != nil {
+		return err
+	}
+
+	stmt, err := db.Prepare("insert into users (fname, lname, born, is_married) values (?, ?, ?, ?)")
+	if err != nil {
+		return err
+	}
+
+	_, err = stmt.Exec(fname, lname, "1999-09-02", true)
+	if err != nil {
+		return err
+	}
+
+	return nil
+
 }
 
