@@ -22,7 +22,8 @@ func UserGetAll() (*sql.Rows, error) {
  * @return mix
  */
 
-func UserStore(fname string, lname string, born string, isMarreid bool) error {
+// func UserStore(fname interface{}, lname interface{}, born interface{}, isMarreid interface{}) error {
+func UserStore(str ...interface{}) error {
     db, err := Conn()
     if err != nil {
         return err
@@ -33,7 +34,7 @@ func UserStore(fname string, lname string, born string, isMarreid bool) error {
         return err
     }
 
-    _, err = stmt.Exec(fname, lname, born, isMarreid)
+    _, err = stmt.Exec(str[0], str[1], str[2], str[3])
     if err != nil {
         return err
     }
