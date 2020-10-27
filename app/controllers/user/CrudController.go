@@ -34,14 +34,30 @@ func UserStore(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var fname string = data.Fname
+	var fname interface{} = data.Fname
 	var lname string = data.Lname
-	var born string = data.Born
-	var isMaried bool = data.IsMarried
+	var born interface{} = data.Born
+	var isMaried interface{} = data.IsMarried
+
+	if fname == "" {
+		fname = nil
+	}
+
+	if born == "" {
+		born = nil
+	}
+
+	if isMaried == "" {
+		isMaried = nil
+	}
 
 	// insert to database
 	err = userModel.UserStore(fname, lname, born, isMaried)
-	if !Msg(err) {return }
+
+	if !Msg(err) {
+		http.Error(w, err.Error(), 403)
+		return
+	}
 
 	w.Write(jsonByte)
 }
