@@ -16,7 +16,7 @@ type UserStuct struct {
 	Fname 	  string `json:"fname"`
 	Lname 	  string `json:"lname"`
 	Born 	  string `json:"born"`
-	IsMarried string   `json:"is_married"`
+	IsMarried string `json:"is_married"`
 }
 
 func UserStore(w http.ResponseWriter, r *http.Request) {
