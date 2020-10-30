@@ -1,7 +1,7 @@
 package user
 
 import (
-    // "fmt"
+    "fmt"
     "database/sql"
     . "gotodo/app/config"
     . "gotodo/system/error"
@@ -43,3 +43,25 @@ func UserStore(str ...interface{}) error {
 
 }
 
+
+/**
+ * Author: Umar <ualfaruq59@gmail.com>
+ * delete user by id
+ * @return void
+ */
+
+func UserDelete(id string) error {
+    fmt.Println(id)
+
+    db, err := Conn()
+    if err != nil {
+        return err
+    }
+
+    _, err = db.Exec("delete from users where id = ?", id)
+    if err != nil {
+        return err
+    }
+
+    return nil
+}
