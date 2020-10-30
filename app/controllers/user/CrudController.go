@@ -80,3 +80,36 @@ func UserStore(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Write(resFunc("200", "Success"))
 }
+
+/**
+ * Author: Umar <ualfaruq59@gmail.com>
+ * delete user by id
+ * @return void
+ */
+
+func UserDelete(w http.ResponseWriter, r *http.Request) {
+	
+	var url = r.URL.Query() // get query string
+	var id = url.Get("id") // get the id
+
+	// the function for write response
+	// @parameter status_code, message
+	var resFunc = func(str ...string) (resByte []byte) {
+		var resStr string = `{"status": `+str[0]+`, "message": "`+str[1]+`"}`
+		resByte = []byte(resStr)
+		
+		return
+	}
+
+	err := userModel.UserDelete(id)
+
+	if !Msg(err) {
+		w.WriteHeader(500)
+		w.Write(resFunc("500", "Internal server error"))
+		return
+	}
+
+	w.Write(resFunc("200", "Success"))
+
+	fmt.Println("success")
+}
