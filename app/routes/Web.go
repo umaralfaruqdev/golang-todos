@@ -33,6 +33,8 @@ func Routes() {
 
     /* handling routes */
     mux.HandleFunc("/", user.UserIndex)
+    mux.HandleFunc("/user/store", user.UserStore)
+    mux.HandleFunc("/user/delete", user.UserDelete)
 
     var confPort int = conf.Server.Port
 
