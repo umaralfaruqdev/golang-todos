@@ -75,7 +75,9 @@ const deleteUser = async function (id) {
 
         const req = await fetch(`http://localhost:9000/user/delete?id=${id}`,)
         const res = await req.json();
-        console.log(res)
+        
+        _DELETE_MODAL_BODY.innerHTML = `<h3>${res.message}</h3>`;
+
     } catch (err) {
         console.error(err);
     }
