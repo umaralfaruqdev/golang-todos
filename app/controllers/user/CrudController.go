@@ -71,9 +71,9 @@ func UserStore(w http.ResponseWriter, r *http.Request) {
 	err = userModel.UserStore(fname, lname, born, isMaried)
 
 	if !Msg(err) {
-		w.WriteHeader(http.StatusForbidden)
+		w.WriteHeader(http.StatusBadRequest)
 		errConv = fmt.Sprintf("%s", err)
-		w.Write(resFunc("403", errConv))
+		w.Write(resFunc("400", errConv))
 		return
 	}
 
