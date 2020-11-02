@@ -81,6 +81,7 @@
                                         data-toggle="modal"
                                         data-target="#deleteModal"
                                         class="btn btn-danger"
+                                        onclick="deleteClick({{$item.Id}})"
                                         ><i class="fas fa-trash-alt"></i
                                     ></a>
                                     <a
@@ -124,7 +125,7 @@
                         <button class="btn btn-danger" data-dismiss="modal">
                             Cancel
                         </button>
-                        <button class="btn btn-primary">Confirm</button>
+                        <button class="btn btn-primary" id="delete-confirm">Confirm</button>
                     </div>
                 </div>
             </div>
@@ -219,6 +220,7 @@
                                     <div class="form-check">
                                         <input
                                             type="radio"
+                                            value="true"
                                             name="married"
                                             id="yes_married"
                                             class="form-check-input"
@@ -235,6 +237,7 @@
                                         <input
                                             type="radio"
                                             name="married"
+                                            value="false"
                                             id="no_married"
                                             class="form-check-input"
                                         />
@@ -253,7 +256,7 @@
                         <button class="btn btn-danger" data-dismiss="modal">
                             Cancel
                         </button>
-                        <button class="btn btn-primary">Submit</button>
+                        <button class="btn btn-primary" onclick="handleSubmit(this)" id="submit-form">Submit</button>
                     </div>
                 </div>
             </div>
@@ -275,6 +278,7 @@
             type="text/javascript"
             src="/static/Crud/dist/js/style.js"
         ></script>
+        <script type="text/javascript" src="/static/Crud/dist/js/http.js"></script>
     </body>
 </html>
 {{end}}
