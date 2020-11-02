@@ -56,6 +56,10 @@ let sendData = async function () {
         let data = await req.json();
         await console.log(data);
 
+        setTimeout(function () {
+            window.location.href = "http://localhost:9000/";
+        }, 300);
+
     } catch (err) {
         // if catch
         console.error(err);
@@ -77,6 +81,11 @@ const deleteUser = async function (id) {
         const res = await req.json();
         
         _DELETE_MODAL_BODY.innerHTML = `<h3>${res.message}</h3>`;
+        console.log(res)
+
+        setTimeout(function () {
+            window.location.href = "http://localhost:9000/";
+        }, 300);
 
     } catch (err) {
         console.error(err);
